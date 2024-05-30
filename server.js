@@ -18,7 +18,7 @@ app.post('/api/customerLogisticRequest', async (req, res) => {
         const formData = req.body;
         const headers = req.headers;
 
-        const response = await fetch('https://39.108.149.225/api/customerLogisticRequest', {
+        const response = await fetch('http://39.108.149.225/api/customerLogisticRequest', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(formData),
