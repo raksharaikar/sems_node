@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 const corsOptions = {
     origin: 'https://serenialtech.com', // Replace with your client's origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: ['Content-Type', 'Authorization'], // Include other headers you need
+    allowedHeaders: ['Content-Type', 'Authorization', 'token'], // Include other headers you need
 };
 
 app.use(cors(corsOptions));
