@@ -1,9 +1,16 @@
 const express = require('express');
 const fetch = require('node-fetch');
-
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
+// CORS configuration
+const corsOptions = {
+    origin: 'https://serenialtech.com', // Replace with your client's origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'], // Include other headers you need
+};
 
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.post('/api/customerLogisticRequest', async (req, res) => {
