@@ -23,8 +23,8 @@ app.post('/api/customerLogisticRequest', async (req, res) => {
             headers: headers,
             body: JSON.stringify(formData),
         });
-        const data = await response.json();
-        console.log('Response:', data);
+        const data1 = await response.json();
+        console.log('Response:', data1);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
