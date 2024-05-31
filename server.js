@@ -17,13 +17,14 @@ app.post('/api/customerLogisticRequest', async (req, res) => {
     try {
         const formData = req.body;
         const headers = req.headers;
-
+ console.log('formData:', formData, headers);
         const response = await fetch('http://39.108.149.225/api/customerLogisticRequest', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(formData),
         });
-
+        const data = await response.json();
+        console.log('Response:', data);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
