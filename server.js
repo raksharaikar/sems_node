@@ -21,25 +21,32 @@ app.post('/api/customerLogisticRequest', async (req, res) => {
         const headers = req.headers;
         console.log('formData:', formData, headers);
 
-       fetch('http://sems-node.onrender.com/api/customerLogisticRequest', {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify(formData),
-})
-.then(response => {
-    console.log(token);
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const response = await fetch('http://39.108.149.225/api/customerLogisticRequest', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(formData),
+        });
+
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        } catch (error) {
+            throw new Error('Failed to parse JSON response: ' + error.message);
+        }
+
+        console.log('Response JSON:', data);
+        res.json(data);
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-    return response.json();
-})
-.then(data => {
-    console.log('Response:', data);
-    // Handle the response as needed
-})
-.catch(error => {
-    console.error('There was a problem with the fetch operation:', error.message);
-});
 });
 
 // GET endpoint to verify the service is running
