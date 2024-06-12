@@ -21,13 +21,11 @@ app.post('/api/customerLogisticRequest', async (req, res) => {
         const headers = req.headers;
         console.log('formData:', formData, headers);
 
-        const response = await fetch('http://39.108.149.225/api/customerLogisticRequest', {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(formData),
-        });
-
-        
+       fetch('http://sems-node.onrender.com/api/customerLogisticRequest', {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(formData),
+})
 .then(response => {
     console.log(token);
     if (!response.ok) {
@@ -39,11 +37,9 @@ app.post('/api/customerLogisticRequest', async (req, res) => {
     console.log('Response:', data);
     // Handle the response as needed
 })
-        
-    } catch (error) {
-        console.error('There was a problem with the fetch operation:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+.catch(error => {
+    console.error('There was a problem with the fetch operation:', error.message);
+});
 });
 
 // GET endpoint to verify the service is running
