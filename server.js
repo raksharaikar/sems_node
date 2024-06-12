@@ -27,16 +27,19 @@ app.post('/api/customerLogisticRequest', async (req, res) => {
             body: JSON.stringify(formData),
         });
 
-        const data1 = await response.json();
-        console.log('Response:', data1);
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        console.log('Response:', data);
-        res.json(data);
+        
+.then(response => {
+    console.log(token);
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    console.log('Response:', data);
+    // Handle the response as needed
+})
+        
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error.message);
         res.status(500).json({ error: 'Internal Server Error' });
